@@ -7,23 +7,39 @@ assert sys.version_info >= (3,4), "This script requires at least Python 3.4"
 #variables
 guesses = 10
 guess_range = 20
+while True:
+
+	#generate a random integer between 1 and 20 (inclusive) and store it in the variable [number]
+	number = random.randint(1,guess_range)
+	for g in range(guesses):
 
 
-#generate a random integer between 1 and 20 (inclusive) and store it in the variable [number]
-number = random.randint(1,guess_range)
-
-#ask the user for a response and store it in the variable [guess]
-guess = input()
+		#ask the user for a response and store it in the variable [guess]
+		guess = input("Ayyo. Let's start guessing numbers between 1-{range} mate (You have {guesses} guesses left): ".format(range = guess_range, guesses = guesses - g))
 
 
-#a try/except block is a great tool for programmers to be able to deal with errors. In this instance, it reports an error if the user enters something other than an integer
-try:
-	#convert the guess to an integer
-	guess = int(guess)
+		#a try/except block is a great tool for programmers to be able to deal with errors. In this instance, it reports an error if the user enters something other than an integer
+		try:
+			#convert the guess to an integer
+			guess = int(guess)
 
-	#check if the guess is less than the random number
-	if guess < number:
-		print('Too low!')
+			#check if the guess is less than the random number
+			if guess < number:
+				print('Too low!')
+			if guess > number:
+				print('A little high pal')
+			if guess == number:
+				print('What? You got it!')
+				break
 
-except ValueError:
-	print('Please enter a whole number.')
+		except ValueError:
+			print('Please enter a whole number.')
+	if g >= guesses:
+		print('So close yet so far away. Maybe next time.')
+		starting_over = input('Feel like giving it another go? Yes or No?')
+	else:
+		print('Well done. Never doubted you for a second. You ended with {guesses} left.'.format(guesses = guesses - g))
+		starting_over = input("So, feel like testing you luck again? Yes or No? ")
+	if starting_over.upper() == "NO":
+		break
+print("Ah. That's too bad. See you next time then.")
