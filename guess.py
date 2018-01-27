@@ -4,18 +4,15 @@ import sys, random
 
 assert sys.version_info >= (3,4), "This script requires at least Python 3.4"
 
-#variables
-guesses = 10
-guess_range = 20
 while True:
 
 	#generate a random integer between 1 and 20 (inclusive) and store it in the variable [number]
-	number = random.randint(1,guess_range)
-	for g in range(guesses):
+	number = random.randint(1,20)
+	for g in range(10):
 
 
 		#ask the user for a response and store it in the variable [guess]
-		guess = input("Ayyo. Let's start guessing numbers between 1-{range} mate (You have {guesses} guesses left): ".format(range = guess_range, guesses = guesses - g))
+		guess = input("Ayyo. Let's start guessing numbers between 1-20 mate (You have {guesses} guesses left): ".format(guesses = 10 - g))
 
 
 		#a try/except block is a great tool for programmers to be able to deal with errors. In this instance, it reports an error if the user enters something other than an integer
@@ -34,11 +31,11 @@ while True:
 
 		except ValueError:
 			print('Please enter a whole number.')
-	if g >= guesses:
+	if g >= 10:
 		print('So close yet so far away. Maybe next time.')
 		starting_over = input('Feel like giving it another go? Yes or No?')
 	else:
-		print('Well done. Never doubted you for a second. You ended with {guesses} left.'.format(guesses = guesses - g))
+		print('Well done. Never doubted you for a second. You ended with {guesses} left.'.format(guesses = 10 - g))
 		starting_over = input("So, feel like testing you luck again? Yes or No? ")
 	if starting_over.upper() == "NO":
 		break
